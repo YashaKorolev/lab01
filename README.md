@@ -11,9 +11,9 @@
 ## Tutorial
 
 ```bash
-$ export GITHUB_USERNAME=<имя_пользователя>
-$ export GIST_TOKEN=<сохраненный_токен>
-$ alias edit=<nano|vi|vim|subl>
+$ export GITHUB_USERNAME=YashaKorolev
+$ export GIST_TOKEN=a3991874026cf53d766910b0bf466648c5c5783e
+$ alias edit=nano
 ```
 
 ```ShellSession
