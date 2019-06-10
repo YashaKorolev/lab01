@@ -4,9 +4,9 @@
 
 ## Tasks
 
-- [ ] 1. Ознакомиться со ссылками учебного материала
-- [ ] 2. Выполнить инструкцию учебного материала
-- [ ] 3. Составить отчет и отправить ссылку личным сообщением в **Slack**
+- [x] 1. Ознакомиться со ссылками учебного материала
+- [x] 2. Выполнить инструкцию учебного материала
+- [x] 3. Составить отчет и отправить ссылку личным сообщением в **Slack**
 
 ## Tutorial
 
@@ -20,8 +20,12 @@ $ alias edit=nano
 $ mkdir -p ${GITHUB_USERNAME}/workspace
 $ cd ${GITHUB_USERNAME}/workspace
 $ pwd
+/home/yasha/YashaKorolev/workspace
+
 $ cd ..
 $ pwd
+/home/yasha/YashaKorolev
+
 ```
 
 ```ShellSession
@@ -34,6 +38,18 @@ $ cd workspace
 ```ShellSession
 # Debian
 $ wget https://nodejs.org/dist/v6.11.5/node-v6.11.5-linux-x64.tar.xz
+--2019-06-10 19:20:25--  https://nodejs.org/dist/v6.11.5/node-v6.11.5-linux-x64.tar.xz
+Loaded CA certificate '/etc/ssl/certs/ca-certificates.crt'
+Resolving nodejs.org (nodejs.org)... 104.20.23.46, 104.20.22.46, 2606:4700:10::6814:172e, ...
+Connecting to nodejs.org (nodejs.org)|104.20.23.46|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 9356460 (8,9M) [application/x-xz]
+Saving to: ‘node-v6.11.5-linux-x64.tar.xz’
+
+node-v6.11.5-linux- 100%[===================>]   8,92M  6,82MB/s    in 1,3s    
+
+2019-06-10 19:20:27 (6,82 MB/s) - ‘node-v6.11.5-linux-x64.tar.xz’ saved [9356460/9356460]
+
 $ tar -xf node-v6.11.5-linux-x64.tar.xz
 $ rm -rf node-v6.11.5-linux-x64.tar.xz
 $ mv node-v6.11.5-linux-x64 node
@@ -41,9 +57,15 @@ $ mv node-v6.11.5-linux-x64 node
 
 ```ShellSession
 $ ls node/bin
+node  npm
+
 $ echo ${PATH}
+/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
+
 $ export PATH=${PATH}:`pwd`/node/bin
 $ echo ${PATH}
+/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/yasha/YashaKorolev/workspace/node/bin
+
 $ mkdir scripts
 $ cat > scripts/activate<<EOF
 export PATH=\${PATH}:`pwd`/node/bin
@@ -53,7 +75,17 @@ $ source scripts/activate
 
 ```ShellSession
 $ npm install -g gistup
+/home/yasha/YashaKorolev/workspace/node/bin/gistup -> /home/yasha/YashaKorolev/workspace/node/lib/node_modules/gistup/bin/gistup
+/home/yasha/YashaKorolev/workspace/node/bin/gistup-open -> /home/yasha/YashaKorolev/workspace/node/lib/node_modules/gistup/bin/gistup-open
+/home/yasha/YashaKorolev/workspace/node/bin/gistup-rename -> /home/yasha/YashaKorolev/workspace/node/lib/node_modules/gistup/bin/gistup-rename
+/home/yasha/YashaKorolev/workspace/node/lib
+└─┬ gistup@0.1.3 
+  ├─┬ optimist@0.3.7 
+  │ └── wordwrap@0.0.3 
+  └── queue-async@1.2.1 
 $ ls node/bin
+gistup  gistup-open  gistup-rename  node  npm
+
 ```
 
 ```ShellSession
