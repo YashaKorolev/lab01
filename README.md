@@ -9,35 +9,35 @@
 - [x] 3. Составить отчет и отправить ссылку личным сообщением в **Slack**
 
 ## Tutorial
-
+Установка переменных окружения, добавление синонима команды
 ```bash
-$ export GITHUB_USERNAME=YashaKorolev
-$ export GIST_TOKEN=a3991874026cf53d766910b0bf466648c5c5783e
-$ alias edit=nano
+$ export GITHUB_USERNAME=YashaKorolev                            # Создать переменную окружения GITHUB_USERNAME
+$ export GIST_TOKEN=a3991874026cf53d766910b0bf466648c5c5783e     # Создать переменную окружения GIST_TOKEN
+$ alias edit=nano                                               # Синоним команды edit (Будет вызван nano)
 ```
-
+Создаем папку, в которой будет находится рабочая облась
 ```ShellSession
-$ mkdir -p ${GITHUB_USERNAME}/workspace
-$ cd ${GITHUB_USERNAME}/workspace
-$ pwd
+$ mkdir -p ${GITHUB_USERNAME}/workspace                    # Создать папку /YashaKorolev/workspace
+$ cd ${GITHUB_USERNAME}/workspace                          # Перейти в папку /YashaKorolev/workspace
+$ pwd                                                     # Вывод текущей директории
 /home/yasha/YashaKorolev/workspace
 
-$ cd ..
-$ pwd
+$ cd ..                                                   # Переход на раздел выше
+$ pwd                                                     # Вывод текущей директории
 /home/yasha/YashaKorolev
 
 ```
-
+Создаем папки в рабочей области
 ```ShellSession
-$ mkdir -p workspace/tasks/
-$ mkdir -p workspace/projects/
-$ mkdir -p workspace/reports/
-$ cd workspace
+$ mkdir -p workspace/tasks/                             # Создать папку /YashaKorolev/workspace/tasks/
+$ mkdir -p workspace/projects/                         # Создать папку /YashaKorolev/workspace/projects/
+$ mkdir -p workspace/reports/                         # Создать папку /YashaKorolev/workspace/reports/
+$ cd workspace                                         # Переход в /YashaKorolev/workspace
 ```
-
+Скачивание и распаковка node js
 ```ShellSession
 # Debian
-$ wget https://nodejs.org/dist/v6.11.5/node-v6.11.5-linux-x64.tar.xz
+$ wget https://nodejs.org/dist/v6.11.5/node-v6.11.5-linux-x64.tar.xz                    # Скачать указанный файл
 --2019-06-10 19:20:25--  https://nodejs.org/dist/v6.11.5/node-v6.11.5-linux-x64.tar.xz
 Loaded CA certificate '/etc/ssl/certs/ca-certificates.crt'
 Resolving nodejs.org (nodejs.org)... 104.20.23.46, 104.20.22.46, 2606:4700:10::6814:172e, ...
@@ -50,31 +50,32 @@ node-v6.11.5-linux- 100%[===================>]   8,92M  6,82MB/s    in 1,3s
 
 2019-06-10 19:20:27 (6,82 MB/s) - ‘node-v6.11.5-linux-x64.tar.xz’ saved [9356460/9356460]
 
-$ tar -xf node-v6.11.5-linux-x64.tar.xz
-$ rm -rf node-v6.11.5-linux-x64.tar.xz
-$ mv node-v6.11.5-linux-x64 node
+$ tar -xf node-v6.11.5-linux-x64.tar.xz     # Разархивировать архив
+$ rm -rf node-v6.11.5-linux-x64.tar.xz     # Удалить архив
+$ mv node-v6.11.5-linux-x64 node          # Переименовать папку с nodejs
 ```
-
+Дописать в PATH путь к node js
 ```ShellSession
-$ ls node/bin
+$ ls node/bin                     # Вывод директорий и файлов в папке node/bin
 node  npm
 
-$ echo ${PATH}
+$ echo ${PATH}                    # Вывод переменной окружения PATH
 /usr/local/bin:/usr/local/sbin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
 
-$ export PATH=${PATH}:`pwd`/node/bin
-$ echo ${PATH}
-/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/yasha/YashaKorolev/workspace/node/bin
+$ export PATH=${PATH}:`pwd`/node/bin            # Дописать в PATH папку с node js
+$ echo ${PATH}                                 # Вывод переменной окружения PATH
+/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/yasha/YashaKorolev/workspace/node/bin   
 
-$ mkdir scripts
-$ cat > scripts/activate<<EOF
+$ mkdir scripts                                  # Создать папку /YashaKorolev/workspace/scripts
+$ cat > scripts/activate<<EOF                   # Запись указанной строки в файл /YashaKorolev/workspace/scripts/activate
+export PATH=\${PATH}:`pwd`/node/bin
 export PATH=\${PATH}:`pwd`/node/bin
 EOF
-$ source scripts/activate
+$ source scripts/activate                     # Выполнить указанный скрипт
 ```
-
+Установка пакета gistup в node js
 ```ShellSession
-$ npm install -g gistup
+$ npm install -g gistup                     # Установка пакета gistup в node js
 /home/yasha/YashaKorolev/workspace/node/bin/gistup -> /home/yasha/YashaKorolev/workspace/node/lib/node_modules/gistup/bin/gistup
 /home/yasha/YashaKorolev/workspace/node/bin/gistup-open -> /home/yasha/YashaKorolev/workspace/node/lib/node_modules/gistup/bin/gistup-open
 /home/yasha/YashaKorolev/workspace/node/bin/gistup-rename -> /home/yasha/YashaKorolev/workspace/node/lib/node_modules/gistup/bin/gistup-rename
@@ -83,13 +84,13 @@ $ npm install -g gistup
   ├─┬ optimist@0.3.7 
   │ └── wordwrap@0.0.3 
   └── queue-async@1.2.1 
-$ ls node/bin
+$ ls node/bin               # Вывод директорий и файлов из /Toliak/workspace/node/bin
 gistup  gistup-open  gistup-rename  node  npm
 
 ```
-
+Настройка конфига модуля gistup
 ```ShellSession
-$ cat > ~/.gistup.json <<EOF
+$ cat > ~/.gistup.json <<EOF                  # Вывод указанного текста в файл ~/.gistup.json
 {
   "token": "${GIST_TOKEN}"
 }
